@@ -1,7 +1,16 @@
 <template>
-  <div class="game__wrapper">Начать игру</div>
+  <div class="game__wrapper">
+    <Button></Button>
+  </div>
 </template>
-<script></script>
+<script>
+import Button from '@/components/Button.vue';
+export default {
+  components: {
+    Button,
+  },
+};
+</script>
 <style>
 .game__wrapper {
   max-width: 900px;
