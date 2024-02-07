@@ -13,13 +13,26 @@ export default {
     AlienDiv,
   },
 };
+// function decreaseTime() {
+//   if (time === 0) {
+//     finishGame();
+//   } else {
+//     let current = --time;
+//     if (current < 10) {
+//       current = `0${current}`;
+//     }
+//     setTime(current);
+//   }
+// }
 </script>
 <style>
 .game__wrapper {
   max-width: 900px;
   height: 900px;
   margin: 2rem auto;
-  background-color: coral;
+  background-image: url(./img/scenery.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 15px;
   display: flex;
   justify-content: center;
