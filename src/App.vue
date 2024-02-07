@@ -1,13 +1,16 @@
 <template>
   <div class="game__wrapper">
     <Button></Button>
+    <AlienDiv></AlienDiv>
   </div>
 </template>
 <script>
 import Button from '@/components/Button.vue';
+import AlienDiv from '@/components/AlienDiv.vue';
 export default {
   components: {
     Button,
+    AlienDiv,
   },
 };
 </script>
