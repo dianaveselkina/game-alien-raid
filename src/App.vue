@@ -1,7 +1,7 @@
 <template>
   <div class="game__wrapper">
     <Button></Button>
-    <AlienDiv></AlienDiv>
+    <!-- <AlienDiv></AlienDiv> -->
   </div>
 </template>
 <script>
@@ -33,9 +33,9 @@ export default {
   background-image: url(./img/scenery.png);
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 15px;
+  border-radius: 3rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 </style>
