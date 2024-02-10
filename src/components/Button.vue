@@ -1,5 +1,14 @@
-<template><button class="game__start">Начать игру</button></template>
-<script></script>
+<template>
+  <button class="game__start" @click="removeRules">Начать игру</button>
+</template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {},
+};
+</script>
 <style>
 .game__start {
   margin-top: 4rem;
