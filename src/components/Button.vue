@@ -6,12 +6,12 @@
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;
-  background-color: #b5b92f;
+  background-color: rgba(181, 182, 33, 0.7);
   border: 4px solid #413e15;
-  font-size: 2rem;
-  color: #413e15;
+  font-size: 3rem;
+  color: #664017;
 }
 .game__start:hover {
-  box-shadow: 0 0 10px 10px rgba(65, 62, 21, 0.6);
+  box-shadow: 0 0 14px 14px rgba(65, 62, 21, 1.6);
 }
 </style>

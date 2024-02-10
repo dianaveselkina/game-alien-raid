@@ -1,16 +1,18 @@
 <template>
   <div class="game__wrapper">
+    <AlienDiv></AlienDiv>
+    <RulesDiv></RulesDiv>
     <Button></Button>
-    <!-- <AlienDiv></AlienDiv> -->
   </div>
 </template>
 <script>
 import Button from '@/components/Button.vue';
 import AlienDiv from '@/components/AlienDiv.vue';
+import RulesDiv from '@/components/RulesDiv.vue';
 export default {
   components: {
     Button,
-    AlienDiv,
+    RulesDiv,
   },
 };
 // function decreaseTime() {
@@ -35,7 +37,9 @@ export default {
   background-size: cover;
   border-radius: 3rem;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
 }
 </style>
