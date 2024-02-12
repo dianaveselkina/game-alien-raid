@@ -1,8 +1,11 @@
 <template>
   <div class="game__wrapper">
-    <AlienDiv></AlienDiv>
+    <AlienDiv v-if="alienVisibility"></AlienDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
-    <Button v-if="!btnVisibility" @click="removeRules(), deleteBtn()"></Button>
+    <Button
+      v-if="!btnVisibility"
+      @click="removeRules(), deleteBtn(), emersionAlien()"
+    ></Button>
     <MonsterDiv></MonsterDiv>
   </div>
 </template>
@@ -15,13 +18,14 @@ export default {
   components: {
     Button,
     RulesDiv,
-    // AlienDiv,
+    AlienDiv,
     // MonsterDiv,
   },
   data() {
     return {
       divVisibility: false,
       btnVisibility: false,
+      alienVisibility: false,
     };
   },
   methods: {
@@ -30,6 +34,9 @@ export default {
     },
     deleteBtn() {
       this.btnVisibility = true;
+    },
+    emersionAlien() {
+      this.alienVisibility = true;
     },
   },
 };
