@@ -1,11 +1,17 @@
 <template>
   <div class="game__wrapper">
-    <AlienDiv @click="removeAlienDiv()" v-if="alienVisibility"></AlienDiv>
+    <Timer></Timer>
+    <AlienDiv
+      @click="removeAlienDiv(), addAlienTwoDiv()"
+      v-if="alienVisibility"
+    ></AlienDiv>
+    <AlienTwoDiv v-if="alienTwoVisibility"></AlienTwoDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <Button
       v-if="!btnVisibility"
       @click="removeRules(), deleteBtn(), emersionAlien()"
     ></Button>
+
     <MonsterDiv></MonsterDiv>
   </div>
 </template>
@@ -13,12 +19,16 @@
 import Button from '@/components/Button.vue';
 import AlienDiv from '@/components/AlienDiv.vue';
 import RulesDiv from '@/components/RulesDiv.vue';
+import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
+import Timer from '@/components/Timer.vue';
 import MonsterDiv from '@/components/MonsterDiv.vue';
 export default {
   components: {
     Button,
     RulesDiv,
     AlienDiv,
+    AlienTwoDiv,
+    Timer,
     // MonsterDiv,
   },
   data() {
@@ -26,6 +36,7 @@ export default {
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
+      alienTwoVisibility: false,
     };
   },
   methods: {
@@ -40,6 +51,9 @@ export default {
     },
     removeAlienDiv() {
       this.alienVisibility = false;
+    },
+    addAlienTwoDiv() {
+      this.alienTwoVisibility = true;
     },
   },
 };
