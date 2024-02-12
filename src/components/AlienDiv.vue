@@ -1,4 +1,6 @@
-<template><div class="alien__character"></div></template>
+<template>
+  <div class="alien__character"></div>
+</template>
 <script></script>
 <style>
 .alien__character {

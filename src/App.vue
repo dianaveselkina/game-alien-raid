@@ -1,6 +1,6 @@
 <template>
   <div class="game__wrapper">
-    <AlienDiv v-if="alienVisibility"></AlienDiv>
+    <AlienDiv @click="removeAlienDiv()" v-if="alienVisibility"></AlienDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <Button
       v-if="!btnVisibility"
@@ -37,6 +37,9 @@ export default {
     },
     emersionAlien() {
       this.alienVisibility = true;
+    },
+    removeAlienDiv() {
+      this.alienVisibility = false;
     },
   },
 };
