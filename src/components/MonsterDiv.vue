@@ -16,8 +16,8 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   width: 500px;
-  height: 500px;
-  margin-top: 50px;
+  height: 866px;
+  margin-top: -72px;
   margin-right: 50px;
 }
 </style>
