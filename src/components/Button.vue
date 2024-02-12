@@ -1,5 +1,5 @@
 <template>
-  <button class="game__start" @click="removeRules">Начать игру</button>
+  <button class="game__start">Начать игру</button>
 </template>
 <script>
 export default {

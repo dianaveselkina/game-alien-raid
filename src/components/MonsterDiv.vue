@@ -12,5 +12,12 @@ export default {
 <style>
 .monster {
   background-image: url(../img/monster.png);
+  z-index: 2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 500px;
+  height: 500px;
+  margin-top: 50px;
+  margin-right: 50px;
 }
 </style>

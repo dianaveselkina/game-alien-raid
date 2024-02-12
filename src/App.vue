@@ -1,31 +1,38 @@
 <template>
   <div class="game__wrapper">
     <AlienDiv></AlienDiv>
-    <RulesDiv></RulesDiv>
-    <Button></Button>
+    <RulesDiv v-if="!divVisibility"></RulesDiv>
+    <Button v-if="!btnVisibility" @click="removeRules(), deleteBtn()"></Button>
+    <MonsterDiv></MonsterDiv>
   </div>
 </template>
 <script>
 import Button from '@/components/Button.vue';
 import AlienDiv from '@/components/AlienDiv.vue';
 import RulesDiv from '@/components/RulesDiv.vue';
+import MonsterDiv from '@/components/MonsterDiv.vue';
 export default {
   components: {
     Button,
     RulesDiv,
+    // AlienDiv,
+    // MonsterDiv,
+  },
+  data() {
+    return {
+      divVisibility: false,
+      btnVisibility: false,
+    };
+  },
+  methods: {
+    removeRules() {
+      this.divVisibility = true;
+    },
+    deleteBtn() {
+      this.btnVisibility = true;
+    },
   },
 };
-// function decreaseTime() {
-//   if (time === 0) {
-//     finishGame();
-//   } else {
-//     let current = --time;
-//     if (current < 10) {
-//       current = `0${current}`;
-//     }
-//     setTime(current);
-//   }
-// }
 </script>
 <style>
 .game__wrapper {
@@ -39,7 +46,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   align-items: center;
 }
 </style>
