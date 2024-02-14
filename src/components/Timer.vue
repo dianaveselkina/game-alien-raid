@@ -1,13 +1,13 @@
 <template>
   <div class="timer">
-    <p>{{ counter }}</p>
+    <p>0:{{ counter }}</p>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      counter: 60,
+      counter: 10,
     };
   },
   methods: {
@@ -18,7 +18,6 @@ export default {
           this.countDown();
         }, 1000);
       }
-      //   this.$router.push({ path: '/2'})
     },
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="game__wrapper">
-    <Timer></Timer>
+    <Timer v-if="timerVisibility"></Timer>
     <AlienDiv
       @click="removeAlienDiv(), addAlienTwoDiv()"
       v-if="alienVisibility"
@@ -9,7 +9,7 @@
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <Button
       v-if="!btnVisibility"
-      @click="removeRules(), deleteBtn(), emersionAlien()"
+      @click="removeRules(), deleteBtn(), emersionAlien(), addTimer()"
     ></Button>
 
     <MonsterDiv></MonsterDiv>
@@ -37,6 +37,7 @@ export default {
       btnVisibility: false,
       alienVisibility: false,
       alienTwoVisibility: false,
+      timerVisibility: false,
     };
   },
   methods: {
@@ -54,6 +55,9 @@ export default {
     },
     addAlienTwoDiv() {
       this.alienTwoVisibility = true;
+    },
+    addTimer() {
+      this.timerVisibility = true;
     },
   },
 };
