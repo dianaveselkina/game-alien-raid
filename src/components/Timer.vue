@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <p>0:{{ counter }}</p>
+    <div id="timer">{{ counter }}</div>
   </div>
 </template>
 <script>
@@ -18,6 +18,8 @@ export default {
           this.countDown();
         }, 1000);
       }
+
+      // this.counter = 'Время вышло...';
     },
   },
   mounted() {

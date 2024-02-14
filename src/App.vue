@@ -2,17 +2,24 @@
   <div class="game__wrapper">
     <Timer v-if="timerVisibility"></Timer>
     <AlienDiv
-      @click="removeAlienDiv(), addAlienTwoDiv()"
+      @click="removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()"
       v-if="alienVisibility"
     ></AlienDiv>
-    <AlienTwoDiv v-if="alienTwoVisibility"></AlienTwoDiv>
+    <AlienTwoDiv
+      @click="removeAlienTwoDiv()"
+      v-if="alienTwoVisibility"
+    ></AlienTwoDiv>
+    <AlienThreeDiv
+      @click="removeAlienThreeDiv()"
+      v-if="alienThreeVisibility"
+    ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <Button
       v-if="!btnVisibility"
       @click="removeRules(), deleteBtn(), emersionAlien(), addTimer()"
     ></Button>
 
-    <MonsterDiv></MonsterDiv>
+    <MonsterDiv v-if="monsterVisibility"></MonsterDiv>
   </div>
 </template>
 <script>
@@ -22,22 +29,27 @@ import RulesDiv from '@/components/RulesDiv.vue';
 import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
 import Timer from '@/components/Timer.vue';
 import MonsterDiv from '@/components/MonsterDiv.vue';
+import AlienThreeDiv from '@/components/AlienThreeDiv.vue';
 export default {
   components: {
     Button,
     RulesDiv,
     AlienDiv,
     AlienTwoDiv,
+    AlienThreeDiv,
     Timer,
-    // MonsterDiv,
+    MonsterDiv,
   },
+
   data() {
     return {
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
       alienTwoVisibility: false,
+      alienThreeVisibility: false,
       timerVisibility: false,
+      monsterVisibility: false,
     };
   },
   methods: {
@@ -56,9 +68,27 @@ export default {
     addAlienTwoDiv() {
       this.alienTwoVisibility = true;
     },
+    removeAlienTwoDiv() {
+      this.alienTwoVisibility = false;
+    },
+    addAlienThreeDiv() {
+      this.alienThreeVisibility = true;
+    },
+    removeAlienThreeDiv() {
+      this.alienThreeVisibility = false;
+    },
     addTimer() {
       this.timerVisibility = true;
     },
+    addMonster() {
+      setTimeout(() => {
+        this.monsterVisibility = true;
+      }, 10000);
+    },
+  },
+
+  mounted() {
+    this.addMonster();
   },
 };
 </script>
