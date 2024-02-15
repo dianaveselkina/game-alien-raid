@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <div id="timer">{{ counter }}</div>
+    <div>{{ counter }}</div>
   </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
         }, 1000);
       }
 
-      // this.counter = 'Время вышло...';
+      // this.counter = 'Время вышло... Ты провалил миссию!';
     },
   },
   mounted() {
@@ -29,9 +29,13 @@ export default {
 </script>
 <style>
 .timer {
-  width: 100px;
+  z-index: 4;
+  display: inline-block;
+  text-align: center;
+  margin-top: 40px;
+  width: 346px;
   height: 100px;
   font-size: 52px;
-  color: rgb(181, 182, 33);
+  color: #664017;
 }
 </style>

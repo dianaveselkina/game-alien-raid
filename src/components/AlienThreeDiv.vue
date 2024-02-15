@@ -10,7 +10,7 @@
   background-size: cover;
   width: 50px;
   height: 66px;
-  margin-top: 400px;
+  margin-top: 300px;
   margin-right: 200px;
 }
 </style>
