@@ -4,8 +4,22 @@
       <div>{{ counter }}</div>
     </div>
     <!-- <Timer v-if="timerVisibility"></Timer> -->
+
+    <div v-if="alienFiveVisibility">
+      <div
+        class="alien"
+        v-for="alien in aliens"
+        :key="alien.id"
+        @click="removeAlienFiveDiv(alien)"
+      ></div>
+    </div>
     <AlienDiv
-      @click="removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()"
+      @click="
+        removeAlienDiv(),
+          addAlienTwoDiv(),
+          addAlienThreeDiv(),
+          addAlienFiveDiv()
+      "
       v-if="alienVisibility"
     ></AlienDiv>
     <AlienTwoDiv
@@ -44,12 +58,14 @@ export default {
 
   data() {
     return {
+      aliens: [{ id: 1 }, { id: 2 }, { id: 3 }],
       counter: 10,
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
       alienTwoVisibility: false,
       alienThreeVisibility: false,
+      alienFiveVisibility: false,
       timerVisibility: false,
       monsterVisibility: false,
     };
@@ -76,6 +92,12 @@ export default {
     addAlienThreeDiv() {
       this.alienThreeVisibility = true;
     },
+    addAlienFiveDiv() {
+      this.alienFiveVisibility = true;
+    },
+    removeAlienFiveDiv(alien) {
+      this.aliens = this.aliens.filter((a) => a.id !== alien.id);
+    },
     removeAlienThreeDiv() {
       this.alienThreeVisibility = false;
     },
@@ -90,6 +112,10 @@ export default {
           this.countDown();
         }, 1000);
       }
+      this.alienFiveVisibility = false;
+      this.alienVisibility = false;
+      this.alienTwoVisibility = false;
+      this.alienThreeVisibility = false;
       this.monsterVisibility = true;
       this.counter = 'Время вышло... Ты провалил миссию!';
     },
@@ -123,5 +149,15 @@ export default {
   height: 100px;
   font-size: 52px;
   color: #664017;
+}
+.alien {
+  cursor: pointer;
+  background-image: url(./img/alien.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100px;
+  height: 132px;
+  margin-top: 50px;
+  margin-right: 100px;
 }
 </style>
