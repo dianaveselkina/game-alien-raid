@@ -1,6 +1,9 @@
 <template>
   <div class="game__wrapper">
-    <Timer v-if="timerVisibility"></Timer>
+    <div v-if="timerVisibility" class="timer">
+      <div>{{ counter }}</div>
+    </div>
+    <!-- <Timer v-if="timerVisibility"></Timer> -->
     <AlienDiv
       @click="removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()"
       v-if="alienVisibility"
@@ -27,7 +30,6 @@ import Button from '@/components/Button.vue';
 import AlienDiv from '@/components/AlienDiv.vue';
 import RulesDiv from '@/components/RulesDiv.vue';
 import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
-import Timer from '@/components/Timer.vue';
 import MonsterDiv from '@/components/MonsterDiv.vue';
 import AlienThreeDiv from '@/components/AlienThreeDiv.vue';
 export default {
@@ -37,12 +39,12 @@ export default {
     AlienDiv,
     AlienTwoDiv,
     AlienThreeDiv,
-    Timer,
     MonsterDiv,
   },
 
   data() {
     return {
+      counter: 10,
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
@@ -80,15 +82,21 @@ export default {
     addTimer() {
       this.timerVisibility = true;
     },
-    addMonster() {
-      setTimeout(() => {
-        this.monsterVisibility = true;
-      }, 10000);
+
+    countDown() {
+      if (this.counter) {
+        return setTimeout(() => {
+          --this.counter;
+          this.countDown();
+        }, 1000);
+      }
+      this.monsterVisibility = true;
+      this.counter = 'Время вышло... Ты провалил миссию!';
     },
   },
 
   mounted() {
-    this.addMonster();
+    this.countDown();
   },
 };
 </script>
@@ -105,5 +113,15 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+.timer {
+  z-index: 4;
+  display: inline-block;
+  text-align: center;
+  margin-top: 40px;
+  width: 700px;
+  height: 100px;
+  font-size: 52px;
+  color: #664017;
 }
 </style>
