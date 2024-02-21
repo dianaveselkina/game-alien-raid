@@ -1,9 +1,8 @@
 <template>
   <div class="game__wrapper">
     <div v-if="timerVisibility" class="timer">
-      <div>{{ counter }}</div>
+      <div><span v-if="spanVisibility">0:</span>{{ counter }}</div>
     </div>
-    <!-- <Timer v-if="timerVisibility"></Timer> -->
 
     <div v-if="alienFiveVisibility">
       <div
@@ -14,12 +13,7 @@
       ></div>
     </div>
     <AlienDiv
-      @click="
-        removeAlienDiv(),
-          addAlienTwoDiv(),
-          addAlienThreeDiv(),
-          addAlienFiveDiv()
-      "
+      @click="removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()"
       v-if="alienVisibility"
     ></AlienDiv>
     <AlienTwoDiv
@@ -27,7 +21,7 @@
       v-if="alienTwoVisibility"
     ></AlienTwoDiv>
     <AlienThreeDiv
-      @click="removeAlienThreeDiv()"
+      @click="removeAlienThreeDiv(), addAlienFiveDiv()"
       v-if="alienThreeVisibility"
     ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
@@ -68,6 +62,7 @@ export default {
       alienFiveVisibility: false,
       timerVisibility: false,
       monsterVisibility: false,
+      spanVisibility: true,
     };
   },
   methods: {
@@ -104,7 +99,6 @@ export default {
     addTimer() {
       this.timerVisibility = true;
     },
-
     countDown() {
       if (this.counter) {
         return setTimeout(() => {
@@ -112,6 +106,7 @@ export default {
           this.countDown();
         }, 1000);
       }
+      this.spanVisibility = false;
       this.alienFiveVisibility = false;
       this.alienVisibility = false;
       this.alienTwoVisibility = false;

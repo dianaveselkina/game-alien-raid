@@ -12,5 +12,7 @@
   height: 66px;
   margin-top: 200px;
   margin-left: 300px;
+  transform: rotate(45deg);
+  opacity: 0.66;
 }
 </style>
