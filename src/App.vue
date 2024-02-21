@@ -8,6 +8,7 @@
       <div
         class="alien"
         v-for="alien in aliens"
+        :class="`alien-${alien.id}`"
         :key="alien.id"
         @click="removeAlienFiveDiv(alien)"
       ></div>
@@ -52,8 +53,8 @@ export default {
 
   data() {
     return {
-      aliens: [{ id: 1 }, { id: 2 }, { id: 3 }],
-      counter: 10,
+      aliens: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+      counter: 20,
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
@@ -123,6 +124,7 @@ export default {
 </script>
 <style>
 .game__wrapper {
+  position: relative;
   max-width: 900px;
   height: 900px;
   margin: 2rem auto;
@@ -146,13 +148,42 @@ export default {
   color: #664017;
 }
 .alien {
+  position: absolute;
   cursor: pointer;
   background-image: url(./img/alien.png);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100px;
-  height: 132px;
-  margin-top: 50px;
-  margin-right: 100px;
+  width: 50px;
+  height: 66px;
+}
+.alien-1 {
+  top: 300px;
+  right: 600px;
+  transform: rotate(-125deg);
+  opacity: 0.33;
+}
+.alien-2 {
+  top: 800px;
+  right: 800px;
+  transform: rotate(121deg);
+  opacity: 0.3;
+}
+.alien-3 {
+  top: 450px;
+  right: 300px;
+  transform: rotate(-170deg);
+  opacity: 0.25;
+}
+.alien-4 {
+  top: 650px;
+  right: 200px;
+  transform: rotate(-25deg);
+  opacity: 0.2;
+}
+.alien-5 {
+  top: 250px;
+  right: 400px;
+  transform: rotate(65deg);
+  opacity: 0.15;
 }
 </style>
