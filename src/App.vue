@@ -30,8 +30,11 @@
       v-if="!btnVisibility"
       @click="removeRules(), deleteBtn(), emersionAlien(), addTimer()"
     ></Button>
-
-    <MonsterDiv v-if="monsterVisibility"></MonsterDiv>
+    <div>
+      <transition name="monster">
+        <MonsterDiv v-if="monsterVisibility"></MonsterDiv
+      ></transition>
+    </div>
   </div>
 </template>
 <script>
@@ -54,7 +57,7 @@ export default {
   data() {
     return {
       aliens: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
-      counter: 20,
+      counter: 3,
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
@@ -185,5 +188,12 @@ export default {
   right: 400px;
   transform: rotate(65deg);
   opacity: 0.15;
+}
+.monster-enter-active {
+  transition: all 3s ease-out;
+}
+.monster-enter-to {
+  transform: scale(4);
+  opacity: 1;
 }
 </style>
