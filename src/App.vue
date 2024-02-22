@@ -66,6 +66,8 @@ export default {
         { id: 5 },
         { id: 6 },
         { id: 7 },
+        { id: 8 },
+        { id: 9 },
       ],
       counter: 9,
       divVisibility: false,
@@ -206,6 +208,18 @@ export default {
   right: 100px;
   transform: rotate(65deg);
   opacity: 0.65;
+}
+.alien-8 {
+  top: 450px;
+  right: 80px;
+  transform: rotate(-65deg);
+  opacity: 0.15;
+}
+.alien-9 {
+  top: 750px;
+  right: 450px;
+  transform: rotate(115deg);
+  opacity: 0.25;
 }
 .monster-enter-active {
   transition: all 1s ease-out;
