@@ -208,11 +208,11 @@ export default {
   opacity: 0.65;
 }
 .monster-enter-active {
-  transition: all 3s ease-out;
+  transition: all 1s ease-out;
 }
 
 .monster-enter-to {
-  transform: scale(4);
+  transform: scale(8);
   opacity: 1;
 }
 </style>
