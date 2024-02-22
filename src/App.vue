@@ -28,7 +28,9 @@
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <Button
       v-if="!btnVisibility"
-      @click="removeRules(), deleteBtn(), emersionAlien(), addTimer()"
+      @click="
+        countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
+      "
     ></Button>
     <div>
       <transition name="monster">
@@ -56,8 +58,16 @@ export default {
 
   data() {
     return {
-      aliens: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
-      counter: 3,
+      aliens: [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+        { id: 6 },
+        { id: 7 },
+      ],
+      counter: 9,
       divVisibility: false,
       btnVisibility: false,
       alienVisibility: false,
@@ -118,10 +128,6 @@ export default {
       this.monsterVisibility = true;
       this.counter = 'Время вышло... Ты провалил миссию!';
     },
-  },
-
-  mounted() {
-    this.countDown();
   },
 };
 </script>
@@ -189,9 +195,22 @@ export default {
   transform: rotate(65deg);
   opacity: 0.15;
 }
+.alien-6 {
+  top: 175px;
+  right: 840px;
+  transform: rotate(65deg);
+  opacity: 0.45;
+}
+.alien-7 {
+  top: 290px;
+  right: 100px;
+  transform: rotate(65deg);
+  opacity: 0.65;
+}
 .monster-enter-active {
   transition: all 3s ease-out;
 }
+
 .monster-enter-to {
   transform: scale(4);
   opacity: 1;
