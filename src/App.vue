@@ -26,12 +26,14 @@
       v-if="alienThreeVisibility"
     ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
-    <Button
-      v-if="!btnVisibility"
-      @click="
-        countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
-      "
-    ></Button>
+    <transition name="btn">
+      <Button
+        v-if="!btnVisibility"
+        @click="
+          countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
+        "
+      ></Button>
+    </transition>
     <div>
       <transition name="monster">
         <MonsterDiv v-if="monsterVisibility"></MonsterDiv
@@ -228,5 +230,12 @@ export default {
 .monster-enter-to {
   transform: scale(8);
   opacity: 1;
+}
+.btn-leave-active {
+  transition: all 1s;
+}
+.btn-leave-to {
+  transform: translateY(250px);
+  opacity: 0;
 }
 </style>
