@@ -36,9 +36,9 @@
       ></Button>
     </transition>
     <div>
-      <transition name="cup">
-        <CupDiv v-if="cupVisibility"></CupDiv
-      ></transition>
+      <CupDiv v-if="cupVisibility"></CupDiv>
+    </div>
+    <div>
       <transition name="monster">
         <MonsterDiv v-if="monsterVisibility"></MonsterDiv
       ></transition>
@@ -138,13 +138,13 @@ export default {
       this.alienVisibility = false;
       this.alienTwoVisibility = false;
       this.alienThreeVisibility = false;
-      this.count > 3
+      this.count > 11
         ? (this.monsterVisibility = false)
         : (this.monsterVisibility = true);
-      this.count > 3
+      this.count > 11
         ? (this.cupVisibility = true)
         : (this.cupVisibility = false);
-      this.count > 3
+      this.count > 11
         ? (this.counter = 'Ты герой! Ты спас планету!')
         : (this.counter = 'Время вышло... Ты провалил миссию!');
     },
@@ -247,7 +247,6 @@ export default {
   transform: scale(8);
   opacity: 1;
 }
-
 .btn-leave-active {
   transition: all 1s;
 }
