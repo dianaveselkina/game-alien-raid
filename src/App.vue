@@ -36,6 +36,9 @@
       ></Button>
     </transition>
     <div>
+      <transition name="cup">
+        <CupDiv v-if="cupVisibility"></CupDiv
+      ></transition>
       <transition name="monster">
         <MonsterDiv v-if="monsterVisibility"></MonsterDiv
       ></transition>
@@ -49,6 +52,8 @@ import RulesDiv from '@/components/RulesDiv.vue';
 import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
 import MonsterDiv from '@/components/MonsterDiv.vue';
 import AlienThreeDiv from '@/components/AlienThreeDiv.vue';
+import CupDiv from '@/components/CupDiv.vue';
+
 export default {
   components: {
     Button,
@@ -57,6 +62,7 @@ export default {
     AlienTwoDiv,
     AlienThreeDiv,
     MonsterDiv,
+    CupDiv,
   },
 
   data() {
@@ -83,6 +89,7 @@ export default {
       timerVisibility: false,
       monsterVisibility: false,
       spanVisibility: true,
+      cupVisibility: false,
     };
   },
   methods: {
@@ -131,11 +138,14 @@ export default {
       this.alienVisibility = false;
       this.alienTwoVisibility = false;
       this.alienThreeVisibility = false;
-      this.count > 11
+      this.count > 3
         ? (this.monsterVisibility = false)
         : (this.monsterVisibility = true);
-      this.count > 11
-        ? (this.counter = 'ты победил')
+      this.count > 3
+        ? (this.cupVisibility = true)
+        : (this.cupVisibility = false);
+      this.count > 3
+        ? (this.counter = 'Ты герой! Ты спас планету!')
         : (this.counter = 'Время вышло... Ты провалил миссию!');
     },
   },
@@ -237,6 +247,7 @@ export default {
   transform: scale(8);
   opacity: 1;
 }
+
 .btn-leave-active {
   transition: all 1s;
 }
