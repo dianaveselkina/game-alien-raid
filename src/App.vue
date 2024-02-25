@@ -3,26 +3,27 @@
     <div v-if="timerVisibility" class="timer">
       <div><span v-if="spanVisibility">0:</span>{{ counter }}</div>
     </div>
-
     <div v-if="alienFiveVisibility">
       <div
         class="alien"
         v-for="alien in aliens"
         :class="`alien-${alien.id}`"
         :key="alien.id"
-        @click="removeAlienFiveDiv(alien)"
+        @click="(count += 1), removeAlienFiveDiv(alien)"
       ></div>
     </div>
     <AlienDiv
-      @click="removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()"
+      @click="
+        (count += 1), removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()
+      "
       v-if="alienVisibility"
     ></AlienDiv>
     <AlienTwoDiv
-      @click="removeAlienTwoDiv()"
+      @click="(count += 1), removeAlienTwoDiv()"
       v-if="alienTwoVisibility"
     ></AlienTwoDiv>
     <AlienThreeDiv
-      @click="removeAlienThreeDiv(), addAlienFiveDiv()"
+      @click="(count += 1), removeAlienThreeDiv(), addAlienFiveDiv()"
       v-if="alienThreeVisibility"
     ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
@@ -71,6 +72,7 @@ export default {
         { id: 8 },
         { id: 9 },
       ],
+      count: 0,
       counter: 9,
       divVisibility: false,
       btnVisibility: false,
@@ -129,8 +131,12 @@ export default {
       this.alienVisibility = false;
       this.alienTwoVisibility = false;
       this.alienThreeVisibility = false;
-      this.monsterVisibility = true;
-      this.counter = 'Время вышло... Ты провалил миссию!';
+      this.count > 11
+        ? (this.monsterVisibility = false)
+        : (this.monsterVisibility = true);
+      this.count > 11
+        ? (this.counter = 'ты победил')
+        : (this.counter = 'Время вышло... Ты провалил миссию!');
     },
   },
 };
