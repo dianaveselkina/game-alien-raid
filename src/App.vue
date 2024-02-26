@@ -28,13 +28,23 @@
     ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <transition name="btn">
-      <Button
+      <MyButton
+        class="game__start"
         v-if="!btnVisibility"
         @click="
           countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
         "
-      ></Button>
+        >Начать игру</MyButton
+      >
     </transition>
+    <MyButton
+      class="game__start"
+      v-if="btnRestartVisibility"
+      @click="
+        countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
+      "
+      >Попробовать еще раз</MyButton
+    >
     <div>
       <CupDiv v-if="cupVisibility"></CupDiv>
     </div>
@@ -46,7 +56,7 @@
   </div>
 </template>
 <script>
-import Button from '@/components/Button.vue';
+import MyButton from '@/components/MyButton.vue';
 import AlienDiv from '@/components/AlienDiv.vue';
 import RulesDiv from '@/components/RulesDiv.vue';
 import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
@@ -56,7 +66,7 @@ import CupDiv from '@/components/CupDiv.vue';
 
 export default {
   components: {
-    Button,
+    MyButton,
     RulesDiv,
     AlienDiv,
     AlienTwoDiv,
@@ -90,6 +100,7 @@ export default {
       monsterVisibility: false,
       spanVisibility: true,
       cupVisibility: false,
+      btnRestartVisibility: false,
     };
   },
   methods: {

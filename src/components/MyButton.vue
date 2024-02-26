@@ -1,5 +1,5 @@
 <template>
-  <button class="game__start">Начать игру</button>
+  <button class="game__start"><slot></slot></button>
 </template>
 <script>
 export default {
