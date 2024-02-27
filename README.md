@@ -4,7 +4,7 @@
 
 Создана на Vue.js
 
-# [Поиграем](https://gamealienraid.netlify.app/).
+ [Поиграем](https://gamealienraid.netlify.app/).
  
 * Найди всех пришельцев
 * Кликай по ним мышкой
