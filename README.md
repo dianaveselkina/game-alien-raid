@@ -8,4 +8,4 @@
 * Кликай по ним мышкой
 * Забери кубок
   
-![game-alien-raid]()
+![game-alien-raid](https://github.com/dianaveselkina/game-alien-raid/blob/master/game-alien-raid.jpg)
