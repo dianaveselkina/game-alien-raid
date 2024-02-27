@@ -37,14 +37,7 @@
         >Начать игру</MyButton
       >
     </transition>
-    <MyButton
-      class="game__start"
-      v-if="btnRestartVisibility"
-      @click="
-        countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
-      "
-      >Попробовать еще раз</MyButton
-    >
+
     <div>
       <CupDiv v-if="cupVisibility"></CupDiv>
     </div>
@@ -53,6 +46,18 @@
         <MonsterDiv v-if="monsterVisibility"></MonsterDiv
       ></transition>
     </div>
+
+    <transition name="restart">
+      <MyButton
+        class="game__restart"
+        v-show="btnRestartVisibility"
+        @click="
+          methodRefreshPage();
+          deleteBtnRestart();
+        "
+        >Попробовать еще раз</MyButton
+      ></transition
+    >
   </div>
 </template>
 <script>
@@ -110,6 +115,9 @@ export default {
     deleteBtn() {
       this.btnVisibility = true;
     },
+    deleteBtnRestart() {
+      this.btnRestartVisibility = false;
+    },
     emersionAlien() {
       this.alienVisibility = true;
     },
@@ -137,6 +145,9 @@ export default {
     addTimer() {
       this.timerVisibility = true;
     },
+    methodRefreshPage() {
+      location.reload();
+    },
     countDown() {
       if (this.counter) {
         return setTimeout(() => {
@@ -149,6 +160,7 @@ export default {
       this.alienVisibility = false;
       this.alienTwoVisibility = false;
       this.alienThreeVisibility = false;
+      this.btnRestartVisibility = true;
       this.count > 11
         ? (this.monsterVisibility = false)
         : (this.monsterVisibility = true);
@@ -250,6 +262,19 @@ export default {
   transform: rotate(115deg);
   opacity: 0.25;
 }
+.game__restart {
+  margin-top: 4rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: rgba(181, 182, 33, 0.7);
+  border: 4px solid #413e15;
+  font-size: 3rem;
+  color: #664017;
+}
+.game__restart:hover {
+  box-shadow: 0 0 14px 14px rgba(65, 62, 21, 1.6);
+}
 .monster-enter-active {
   transition: all 1s ease-out;
 }
@@ -264,5 +289,15 @@ export default {
 .btn-leave-to {
   transform: translateY(250px);
   opacity: 0;
+}
+.restart-enter-from {
+  opacity: 0;
+}
+.restart-enter-active {
+  transition: opacity 0.1s 4s forwards;
+}
+
+.restart-enter-to {
+  opacity: 1;
 }
 </style>
