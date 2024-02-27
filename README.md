@@ -1,19 +1,11 @@
 # game-alien-raid
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Игра "Нашествие пришельцев"
+Создана на Vue.js
+ [Поиграем](https://gamealienraid.netlify.app/).
+ 
+* Найди всех пришельцев
+* Кликай по ним мышкой
+* Забери кубок
+  
+![game-alien-raid]()
