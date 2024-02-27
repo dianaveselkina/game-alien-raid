@@ -46,17 +46,14 @@
         <MonsterDiv v-if="monsterVisibility"></MonsterDiv
       ></transition>
     </div>
-
-    <transition name="restart">
-      <MyButton
-        class="game__restart"
-        v-show="btnRestartVisibility"
-        @click="
-          methodRefreshPage();
-          deleteBtnRestart();
-        "
-        >Попробовать еще раз</MyButton
-      ></transition
+    <MyButton
+      class="game__restart"
+      v-show="btnRestartVisibility"
+      @click="
+        methodRefreshPage();
+        deleteBtnRestart();
+      "
+      >Попробовать еще раз</MyButton
     >
   </div>
 </template>
@@ -160,7 +157,10 @@ export default {
       this.alienVisibility = false;
       this.alienTwoVisibility = false;
       this.alienThreeVisibility = false;
-      this.btnRestartVisibility = true;
+      setTimeout(() => {
+        this.btnRestartVisibility = true;
+      }, '1500');
+
       this.count > 11
         ? (this.monsterVisibility = false)
         : (this.monsterVisibility = true);
@@ -290,7 +290,7 @@ export default {
   transform: translateY(250px);
   opacity: 0;
 }
-.restart-enter-from {
+/* .restart-enter-from {
   opacity: 0;
 }
 .restart-enter-active {
@@ -299,5 +299,5 @@ export default {
 
 .restart-enter-to {
   opacity: 1;
-}
+} */
 </style>
