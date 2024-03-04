@@ -3,37 +3,35 @@
     <div v-if="timerVisibility" class="timer">
       <div><span v-if="spanVisibility">0:</span>{{ counter }}</div>
     </div>
-    <div v-if="alienFiveVisibility">
+    <div v-if="alienVisibility">
       <div
         class="alien"
-        v-for="alien in aliens"
-        :class="`alien-${alien.id}`"
+        v-for="(alien, i) in aliens"
+        :style="{
+          top: top + 'px',
+          right: right + 'px',
+          opacity: opacity,
+          rotate: rotate + 'deg',
+          scale: scale,
+        }"
         :key="alien.id"
-        @click="(count += 1), removeAlienFiveDiv(alien)"
+        @click="
+          (count += 1),
+            aliens.splice(i, 1),
+            getRandomTop(),
+            getRandomRight(),
+            getOpacity(),
+            getRotate(),
+            getScale()
+        "
       ></div>
     </div>
-    <AlienDiv
-      @click="
-        (count += 1), removeAlienDiv(), addAlienTwoDiv(), addAlienThreeDiv()
-      "
-      v-if="alienVisibility"
-    ></AlienDiv>
-    <AlienTwoDiv
-      @click="(count += 1), removeAlienTwoDiv()"
-      v-if="alienTwoVisibility"
-    ></AlienTwoDiv>
-    <AlienThreeDiv
-      @click="(count += 1), removeAlienThreeDiv(), addAlienFiveDiv()"
-      v-if="alienThreeVisibility"
-    ></AlienThreeDiv>
     <RulesDiv v-if="!divVisibility"></RulesDiv>
     <transition name="btn">
       <MyButton
         class="game__start"
         v-if="!btnVisibility"
-        @click="
-          countDown(), removeRules(), deleteBtn(), emersionAlien(), addTimer()
-        "
+        @click="countDown(), removeRules(), deleteBtn(), addTimer(), addAlien()"
         >Начать игру</MyButton
       >
     </transition>
@@ -59,20 +57,14 @@
 </template>
 <script>
 import MyButton from '@/components/MyButton.vue';
-import AlienDiv from '@/components/AlienDiv.vue';
 import RulesDiv from '@/components/RulesDiv.vue';
-import AlienTwoDiv from '@/components/AlienTwoDiv.vue';
 import MonsterDiv from '@/components/MonsterDiv.vue';
-import AlienThreeDiv from '@/components/AlienThreeDiv.vue';
 import CupDiv from '@/components/CupDiv.vue';
 
 export default {
   components: {
     MyButton,
     RulesDiv,
-    AlienDiv,
-    AlienTwoDiv,
-    AlienThreeDiv,
     MonsterDiv,
     CupDiv,
   },
@@ -89,23 +81,42 @@ export default {
         { id: 7 },
         { id: 8 },
         { id: 9 },
+        { id: 10 },
+        { id: 11 },
+        { id: 12 },
       ],
+      scale: 1,
+      rotate: 0,
+      top: 450,
+      right: 413,
       count: 0,
-      counter: 9,
+      counter: 10,
       divVisibility: false,
       btnVisibility: false,
-      alienVisibility: false,
-      alienTwoVisibility: false,
-      alienThreeVisibility: false,
-      alienFiveVisibility: false,
       timerVisibility: false,
       monsterVisibility: false,
       spanVisibility: true,
       cupVisibility: false,
       btnRestartVisibility: false,
+      alienVisibility: false,
     };
   },
   methods: {
+    getRandomTop() {
+      this.top = Math.round(Math.random() * (800 - 150) + 150);
+    },
+    getRandomRight() {
+      this.right = Math.round(Math.random() * (800 - 100) + 100);
+    },
+    getOpacity() {
+      this.opacity = Math.random().toFixed(2);
+    },
+    getRotate() {
+      this.rotate = Math.random().toFixed(2) * 100;
+    },
+    getScale() {
+      this.scale = Math.round(Math.random() * (100 - 60) + 60) * 0.01;
+    },
     removeRules() {
       this.divVisibility = true;
     },
@@ -115,33 +126,13 @@ export default {
     deleteBtnRestart() {
       this.btnRestartVisibility = false;
     },
-    emersionAlien() {
-      this.alienVisibility = true;
-    },
-    removeAlienDiv() {
-      this.alienVisibility = false;
-    },
-    addAlienTwoDiv() {
-      this.alienTwoVisibility = true;
-    },
-    removeAlienTwoDiv() {
-      this.alienTwoVisibility = false;
-    },
-    addAlienThreeDiv() {
-      this.alienThreeVisibility = true;
-    },
-    addAlienFiveDiv() {
-      this.alienFiveVisibility = true;
-    },
-    removeAlienFiveDiv(alien) {
-      this.aliens = this.aliens.filter((a) => a.id !== alien.id);
-    },
-    removeAlienThreeDiv() {
-      this.alienThreeVisibility = false;
-    },
     addTimer() {
       this.timerVisibility = true;
     },
+    addAlien() {
+      this.alienVisibility = true;
+    },
+
     methodRefreshPage() {
       location.reload();
     },
@@ -153,14 +144,10 @@ export default {
         }, 1000);
       }
       this.spanVisibility = false;
-      this.alienFiveVisibility = false;
-      this.alienVisibility = false;
-      this.alienTwoVisibility = false;
-      this.alienThreeVisibility = false;
       setTimeout(() => {
         this.btnRestartVisibility = true;
       }, '1500');
-
+      this.alienVisibility = false;
       this.count > 11
         ? (this.monsterVisibility = false)
         : (this.monsterVisibility = true);
@@ -205,63 +192,10 @@ export default {
   background-image: url(./img/alien.png);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50px;
-  height: 66px;
+  width: 75px;
+  height: 99px;
 }
-.alien-1 {
-  top: 300px;
-  right: 600px;
-  transform: rotate(-125deg);
-  opacity: 0.33;
-}
-.alien-2 {
-  top: 800px;
-  right: 800px;
-  transform: rotate(121deg);
-  opacity: 0.3;
-}
-.alien-3 {
-  top: 450px;
-  right: 300px;
-  transform: rotate(-170deg);
-  opacity: 0.25;
-}
-.alien-4 {
-  top: 650px;
-  right: 200px;
-  transform: rotate(-25deg);
-  opacity: 0.2;
-}
-.alien-5 {
-  top: 250px;
-  right: 400px;
-  transform: rotate(65deg);
-  opacity: 0.15;
-}
-.alien-6 {
-  top: 175px;
-  right: 840px;
-  transform: rotate(65deg);
-  opacity: 0.45;
-}
-.alien-7 {
-  top: 290px;
-  right: 100px;
-  transform: rotate(65deg);
-  opacity: 0.65;
-}
-.alien-8 {
-  top: 450px;
-  right: 80px;
-  transform: rotate(-65deg);
-  opacity: 0.15;
-}
-.alien-9 {
-  top: 750px;
-  right: 450px;
-  transform: rotate(115deg);
-  opacity: 0.25;
-}
+
 .game__restart {
   margin-top: 4rem;
   padding: 1rem;
@@ -287,17 +221,7 @@ export default {
   transition: all 1s;
 }
 .btn-leave-to {
-  transform: translateY(250px);
+  transform: translateY(-250px);
   opacity: 0;
 }
-/* .restart-enter-from {
-  opacity: 0;
-}
-.restart-enter-active {
-  transition: opacity 0.1s 4s forwards;
-}
-
-.restart-enter-to {
-  opacity: 1;
-} */
 </style>
