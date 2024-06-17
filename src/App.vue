@@ -188,7 +188,7 @@ export default {
   background-image: url(./img/alien.png);
   background-repeat: no-repeat;
   background-size: cover;
-  width: 75px;
+  width: 150px;
   height: 99px;
 }
 
