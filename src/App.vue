@@ -21,7 +21,6 @@
             getRandomTop(),
             getRandomRight(),
             getOpacity(),
-            getRotate(),
             getScale()
         "
       ></div>
@@ -110,9 +109,6 @@ export default {
     },
     getOpacity() {
       this.opacity = Math.random().toFixed(2);
-    },
-    getRotate() {
-      this.rotate = Math.random().toFixed(2) * 100;
     },
     getScale() {
       this.scale = Math.round(Math.random() * (100 - 60) + 60) * 0.01;
